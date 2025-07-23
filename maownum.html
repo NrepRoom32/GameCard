@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ເກມໄພ່ລາວ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Lao', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 50%, #1a1a1a 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        .header {
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .logo-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .logo-card {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border-radius: 15px;
+            border: 3px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: wave 3s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .logo-card:nth-child(1) { animation-delay: 0s; }
+        .logo-card:nth-child(2) { animation-delay: 0.5s; }
+        .logo-card:nth-child(3) { animation-delay: 1s; }
+        .logo-card:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes wave {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(2deg); }
+            50% { transform: translateY(-5px) rotate(0deg); }
+            75% { transform: translateY(-15px) rotate(-2deg); }
+        }
+
+        .game-title {
+            color: #ffd700;
+            font-size: 32px;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            margin-bottom: 10px;
+        }
+
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        .card-counter {
+            color: #ffd700;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            justify-content: center;
+        }
+
+        .card-stack {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .card {
+            width: 180px;
+            height: 250px;
+            background: linear-gradient(135deg, #dc143c, #b71c1c);
+            border: 4px solid #ffd700;
+            border-radius: 20px;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .card:nth-child(1) { transform: translate(0px, 0px) rotate(0deg); z-index: 10; }
+        .card:nth-child(2) { transform: translate(-3px, -3px) rotate(-1deg); z-index: 9; }
+        .card:nth-child(3) { transform: translate(-6px, -6px) rotate(-2deg); z-index: 8; }
+        .card:nth-child(4) { transform: translate(-9px, -9px) rotate(-1.5deg); z-index: 7; }
+        .card:nth-child(5) { transform: translate(-12px, -12px) rotate(-0.5deg); z-index: 6; }
+
+        .card:hover {
+            transform: translate(0px, -10px) rotate(0deg) scale(1.05) !important;
+            z-index: 20 !important;
+        }
+
+        .card-back {
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, #ffd700 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, #ffd700 2px, transparent 2px),
+                linear-gradient(45deg, #dc143c 25%, transparent 25%),
+                linear-gradient(-45deg, #dc143c 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #dc143c 75%),
+                linear-gradient(-45deg, transparent 75%, #dc143c 75%);
+            background-size: 20px 20px, 20px 20px, 40px 40px, 40px 40px, 40px 40px, 40px 40px;
+            background-position: 0 0, 10px 10px, 0 0, 0 0, 0 0, 0 0;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-symbol {
+            font-size: 60px;
+            color: #ffd700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            font-weight: 700;
+        }
+
+        .rule-popup {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            border: 3px solid #ffd700;
+            border-radius: 20px;
+            padding: 20px;
+            width: 280px;
+            min-height: 120px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 15;
+            margin-bottom: 20px;
+        }
+
+        .rule-popup.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .rule-popup::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-top: 15px solid #ffd700;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+        }
+
+        .rule-text {
+            color: white;
+            font-size: 18px;
+            line-height: 1.5;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            font-weight: 400;
+        }
+
+        .current-card-display {
+            font-size: 48px;
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+            text-align: center;
+        }
+
+        .reset-button {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: 3px solid #ffd700;
+            margin-left: 30px;
+        }
+
+        .reset-button:hover {
+            transform: scale(1.1) rotate(180deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }
+
+        .card-flip-effect {
+            animation: flipCard 0.8s ease-in-out;
+        }
+
+        @keyframes flipCard {
+            0% { transform: perspective(1000px) rotateY(0deg) scale(1); }
+            50% { transform: perspective(1000px) rotateY(90deg) scale(1.1); }
+            100% { transform: perspective(1000px) rotateY(180deg) scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo-cards {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .logo-card {
+                width: 150px;
+                height: 150px;
+                font-size: 60px;
+            }
+            
+            .rule-popup {
+                width: 90vw;
+                max-width: 320px;
+            }
+            
+            .card-stack {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .reset-button {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            
+            .game-title {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-height: 600px) and (orientation: landscape) {
+            .header {
+                padding: 10px 0;
+            }
+            
+            .logo-cards {
+                margin-bottom: 10px;
+                gap: 10px;
+            }
+            
+            .logo-card {
+                width: 80px;
+                height: 80px;
+                font-size: 32px;
+            }
+            
+            .game-title {
+                font-size: 20px;
+                margin-bottom: 5px;
+            }
+            
+            .card {
+                width: 140px;
+                height: 200px;
+            }
+            
+            .card-stack {
+                flex-direction: row;
+                gap: 20px;
+            }
+            
+            .rule-popup {
+                width: 220px;
+            }
+            
+            .current-card-display {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-cards">
+            <div class="logo-card">♠</div>
+            <div class="logo-card">♥</div>
+            <div class="logo-card">♦</div>
+            <div class="logo-card">♣</div>
+        </div>
+        <h1 class="game-title">ເກມໄພ່ລາວ</h1>
+    </div>
+
+    <div class="game-container">
+        <div class="card-counter">ເຫຼືອໄພ່: <span id="cardCount">52</span> ໃບ</div>
+        
+        <div class="main-content">
+            <div class="rule-popup" id="rulePopup">
+                <div class="current-card-display" id="currentCard">ກົດໄພ່ເພື່ອເລີ່ມເກມ</div>
+                <div class="rule-text" id="ruleText">ເລືອກໄພ່ເພື່ອເບິ່ງກົດ</div>
+            </div>
+            
+            <div class="card-stack">
+                <div id="cardStackContainer" onclick="drawCard()">
+                    <div class="card">
+                        <div class="card-back">
+                            <div class="card-symbol">?</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back">
+                            <div class="card-symbol">?</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back">
+                            <div class="card-symbol">?</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back">
+                            <div class="card-symbol">?</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-back">
+                            <div class="card-symbol">?</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="reset-button" onclick="resetGame()" title="ເລີ່ມເກມໃໝ່">↻</button>
+            </div>
+        </div>
+    </div>
+
+    <button class="reset-button" onclick="resetGame()" title="ເລີ່ມເກມໃໝ່">↻</button>
+
+    <script>
+        // กำหนดกฎของไพ่
+        const cardRules = {
+            'A': 'A - ກິນຄົນດຽວ',
+            '2': '2 - ຊວນໝູ່ກິນນຳຄົນນຶ່ງ',
+            '3': '3 - ຊວນຫມູ່ອີກສອງຄົນກິນນຳ',
+            '4': '4 - ຄົນຊ້າຍກິນ',
+            '5': '5 - ກິນທຸກຄົນ',
+            '6': '6 - ຄົນຂວາກິນ',
+            '7': '7 - ເອີ້ນຫມູ່ທາງຊ້າຍວ່າ "ທ່ານ..ຕາມດ້ວຍຊື່" ແລະ ຫຍິ້ນເບຍໃຫ້ຄົນຊ້າຍກິນ1ຈອກ',
+            '8': '8 - ລອດຕາຍ',
+            '9': '9 - ເອີ້ນຫມູ່ທາງຂວາວ່າ "ທ່ານ..ຕາມດ້ວຍຊື່" ແລະ ຫຍິ້ນເບຍໃຫ້ຄົນຂວາກິນ1ຈອກ',
+            '10': '10 - ເປັນເບ້ຫຍິ່ນເບຍໃຫ້ຫມູ່ ຈົນກວ່າເລກ10ຈະອອກ',
+            'J': 'J - ສັ່ງໃຜກໍໄດ້ກິນ 1ຄົນ',
+            'Q': 'Q - ສັ່ງໃຜກໍໄດ້ກິນ 2ຄົນ',
+            'K': 'K - ສັ່ງໃຜກໍໄດ້ກິນ ຫຼື ຈະສັ່ງທັງຫມົດກິນຍົກເວັ້ນໂຕເອງກໍໄດ້'
+        };
+
+        // สร้างสำรับไพ่
+        let deck = [];
+        let currentCardCount = 52;
+
+        function createDeck() {
+            deck = [];
+            const suits = ['♠', '♥', '♦', '♣'];
+            const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+            
+            for (let suit of suits) {
+                for (let value of values) {
+                    deck.push({ value: value, suit: suit });
+                }
+            }
+            
+            // สับไพ่
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+            
+            currentCardCount = 52;
+            updateCardCount();
+        }
+
+        function updateCardCount() {
+            document.getElementById('cardCount').textContent = currentCardCount;
+        }
+
+        function showRule(card) {
+            const rulePopup = document.getElementById('rulePopup');
+            const currentCardElement = document.getElementById('currentCard');
+            const ruleTextElement = document.getElementById('ruleText');
+            
+            currentCardElement.textContent = `${card.value}${card.suit}`;
+            ruleTextElement.textContent = cardRules[card.value];
+            
+            rulePopup.classList.add('show');
+        }
+
+        function drawCard() {
+            if (deck.length === 0) {
+                alert('ໄພ່ໝົດແລ້ວ! ກົດປຸ່ມເລີ່ມໃໝ່');
+                return;
+            }
+
+            const cardStack = document.getElementById('cardStackContainer');
+            const topCard = cardStack.querySelector('.card:first-child');
+            
+            // เพิ่ม effect การพลิกไพ่
+            topCard.classList.add('card-flip-effect');
+            
+            setTimeout(() => {
+                // ดึงไพ่ใบบนสุด
+                const drawnCard = deck.pop();
+                currentCardCount--;
+                updateCardCount();
+                
+                // แสดงกฎของไพ่
+                showRule(drawnCard);
+                
+                // ลบไพ่ใบบนสุดออกจากสแต็ก
+                topCard.remove();
+                
+                // หากมีไพ่เหลืออยู่ ให้เพิ่มไพ่ใหม่ที่ด้านล่าง
+                if (deck.length > 0) {
+                    const newCard = document.createElement('div');
+                    newCard.className = 'card';
+                    newCard.innerHTML = `
+                        <div class="card-back">
+                            <div class="card-symbol">?</div>
+                        </div>
+                    `;
+                    newCard.style.transform = 'translate(-15px, -15px) rotate(-2.5deg)';
+                    newCard.style.zIndex = '5';
+                    cardStack.appendChild(newCard);
+                    
+                    // อัพเดตตำแหน่งไพ่ทั้งหมด
+                    setTimeout(() => {
+                        const cards = cardStack.querySelectorAll('.card');
+                        cards.forEach((card, index) => {
+                            const rotation = index * -1 + (Math.random() - 0.5) * 2;
+                            const offsetX = index * -3;
+                            const offsetY = index * -3;
+                            card.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotation}deg)`;
+                            card.style.zIndex = 10 - index;
+                        });
+                    }, 100);
+                }
+                
+                if (deck.length === 0) {
+                    setTimeout(() => {
+                        alert('ເກມຈົບແລ້ວ! ຂອບໃຈທີ່ຫຼິ້ນ');
+                    }, 1000);
+                }
+            }, 400);
+        }
+
+        function resetGame() {
+            // ซ่อนกฎ
+            const rulePopup = document.getElementById('rulePopup');
+            rulePopup.classList.remove('show');
+            
+            // รีเซ็ตข้อความ
+            document.getElementById('currentCard').textContent = 'ກົດໄພ່ເພື່ອເລີ່ມເກມ';
+            document.getElementById('ruleText').textContent = 'ເລືອກໄພ່ເພື່ອເບິ່ງກົດ';
+            
+            // สร้างสำรับไพ่ใหม่
+            createDeck();
+            
+            // รีเซ็ตสแต็กไพ่
+            const cardStack = document.getElementById('cardStack');
+            cardStack.innerHTML = `
+                <div class="card">
+                    <div class="card-back">
+                        <div class="card-symbol">?</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-back">
+                        <div class="card-symbol">?</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-back">
+                        <div class="card-symbol">?</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-back">
+                        <div class="card-symbol">?</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-back">
+                        <div class="card-symbol">?</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // เริ่มต้นเกม
+        createDeck();
+    </script>
+</body>
+</html>
