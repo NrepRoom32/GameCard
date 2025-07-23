@@ -14,167 +14,193 @@
 
         body {
             font-family: 'Noto Sans Lao', sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 50%, #1a1a1a 100%);
+            background: linear-gradient(135deg, #000000, #1a1a2e, #16213e);
+            color: white;
             min-height: 100vh;
             overflow-x: hidden;
-            user-select: none;
         }
 
-        .header {
-            padding: 20px 0;
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            padding: 20px;
+        }
+
+        .main-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
             text-align: center;
         }
 
-        .logo-cards {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #ffd700, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .logo-card {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            border-radius: 15px;
-            border: 3px solid #ffd700;
+        .card-icons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 90px;
+            background: linear-gradient(145deg, #2a2a2a, #000);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 120px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            animation: wave 3s ease-in-out infinite;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            font-size: 2rem;
+            animation: wave 2s ease-in-out infinite;
+            border: 2px solid #ffd700;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
         }
 
-        .logo-card:nth-child(1) { animation-delay: 0s; }
-        .logo-card:nth-child(2) { animation-delay: 0.5s; }
-        .logo-card:nth-child(3) { animation-delay: 1s; }
-        .logo-card:nth-child(4) { animation-delay: 1.5s; }
+        .card-icon:nth-child(1) { animation-delay: 0s; }
+        .card-icon:nth-child(2) { animation-delay: 0.5s; }
+        .card-icon:nth-child(3) { animation-delay: 1s; }
+        .card-icon:nth-child(4) { animation-delay: 1.5s; }
 
         @keyframes wave {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             25% { transform: translateY(-10px) rotate(2deg); }
-            50% { transform: translateY(-5px) rotate(0deg); }
-            75% { transform: translateY(-15px) rotate(-2deg); }
+            75% { transform: translateY(10px) rotate(-2deg); }
         }
 
-        .game-title {
-            color: #ffd700;
-            font-size: 32px;
+        .start-btn {
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            color: black;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
             font-weight: 700;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-            margin-bottom: 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Noto Sans Lao', sans-serif;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
         }
 
-        .game-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-            padding: 20px;
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .game-screen {
+            display: none;
+            min-height: 100vh;
             position: relative;
         }
 
-        .card-counter {
-            color: #ffd700;
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        .reset-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
         }
 
-        .main-content {
+        .reset-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .game-area {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 30px;
-            width: 100%;
-            max-width: 1200px;
+            min-height: 100vh;
             justify-content: center;
+            gap: 30px;
+            position: relative;
         }
 
         .card-stack {
             position: relative;
+            width: 120px;
+            height: 180px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 30px;
         }
 
         .card {
-            width: 180px;
-            height: 250px;
-            background: linear-gradient(135deg, #dc143c, #b71c1c);
-            border: 4px solid #ffd700;
-            border-radius: 20px;
             position: absolute;
+            width: 120px;
+            height: 180px;
+            background: linear-gradient(145deg, #2a2a2a, #000);
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
+            border: 3px solid #ffd700;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s ease;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 215, 0, 0.05) 2px, rgba(255, 215, 0, 0.05) 4px);
         }
 
-        .card:nth-child(1) { transform: translate(0px, 0px) rotate(0deg); z-index: 10; }
-        .card:nth-child(2) { transform: translate(-3px, -3px) rotate(-1deg); z-index: 9; }
-        .card:nth-child(3) { transform: translate(-6px, -6px) rotate(-2deg); z-index: 8; }
-        .card:nth-child(4) { transform: translate(-9px, -9px) rotate(-1.5deg); z-index: 7; }
-        .card:nth-child(5) { transform: translate(-12px, -12px) rotate(-0.5deg); z-index: 6; }
+        .card:nth-child(1) { transform: translateY(0px) translateX(0px); z-index: 3; }
+        .card:nth-child(2) { transform: translateY(2px) translateX(2px); z-index: 2; }
+        .card:nth-child(3) { transform: translateY(4px) translateX(4px); z-index: 1; }
 
-        .card:hover {
-            transform: translate(0px, -10px) rotate(0deg) scale(1.05) !important;
-            z-index: 20 !important;
-        }
-
-        .card-back {
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 25% 25%, #ffd700 2px, transparent 2px),
-                radial-gradient(circle at 75% 75%, #ffd700 2px, transparent 2px),
-                linear-gradient(45deg, #dc143c 25%, transparent 25%),
-                linear-gradient(-45deg, #dc143c 25%, transparent 25%),
-                linear-gradient(45deg, transparent 75%, #dc143c 75%),
-                linear-gradient(-45deg, transparent 75%, #dc143c 75%);
-            background-size: 20px 20px, 20px 20px, 40px 40px, 40px 40px, 40px 40px, 40px 40px;
-            background-position: 0 0, 10px 10px, 0 0, 0 0, 0 0, 0 0;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-symbol {
-            font-size: 60px;
-            color: #ffd700;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        .card-number {
+            font-size: 3rem;
             font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .card-count {
+            font-size: 1rem;
+            color: #ccc;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 15px;
+            border: 1px solid #ffd700;
         }
 
         .rule-popup {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, rgba(0, 100, 200, 0.9), rgba(0, 150, 255, 0.9));
             border: 3px solid #ffd700;
             border-radius: 20px;
             padding: 20px;
-            width: 280px;
-            min-height: 120px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-            opacity: 0;
-            transition: all 0.5s ease;
-            z-index: 15;
-            margin-bottom: 20px;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: none;
+            animation: popIn 0.3s ease;
         }
 
-        .rule-popup.show {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .rule-popup::after {
+        .rule-popup::before {
             content: '';
             position: absolute;
             bottom: -15px;
@@ -182,350 +208,245 @@
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-top: 15px solid #ffd700;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid rgba(0, 150, 255, 0.9);
         }
 
-        .rule-text {
-            color: white;
-            font-size: 18px;
-            line-height: 1.5;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            font-weight: 400;
+        @keyframes popIn {
+            0% { transform: translateX(-50%) scale(0.5); opacity: 0; }
+            100% { transform: translateX(-50%) scale(1); opacity: 1; }
         }
 
-        .current-card-display {
-            font-size: 48px;
+        .rule-popup h3 {
+            font-size: 2.5rem;
             color: #ffd700;
             margin-bottom: 15px;
-            font-weight: 700;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
-            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        .reset-button {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            border: none;
-            border-radius: 50%;
+        .rule-popup p {
+            font-size: 1.1rem;
+            line-height: 1.5;
             color: white;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
-            z-index: 100;
-            border: 3px solid #ffd700;
-            margin-left: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
-        .reset-button:hover {
-            transform: scale(1.1) rotate(180deg);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-        }
-
-        .card-flip-effect {
+        .card-flip {
             animation: flipCard 0.8s ease-in-out;
         }
 
         @keyframes flipCard {
-            0% { transform: perspective(1000px) rotateY(0deg) scale(1); }
-            50% { transform: perspective(1000px) rotateY(90deg) scale(1.1); }
-            100% { transform: perspective(1000px) rotateY(180deg) scale(1); }
+            0% { transform: rotateY(0deg) scale(1); }
+            50% { transform: rotateY(90deg) scale(1.1); }
+            100% { transform: rotateY(0deg) scale(1); }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .logo-cards {
-                flex-wrap: wrap;
-                gap: 15px;
+        .game-complete {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .game-complete h2 {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .suit-heart { color: #ff4757; }
+        .suit-diamond { color: #ff4757; }
+        .suit-club { color: #2f3542; }
+        .suit-spade { color: #2f3542; }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
             }
             
-            .logo-card {
-                width: 150px;
-                height: 150px;
-                font-size: 60px;
+            .title {
+                font-size: 2rem;
+            }
+            
+            .card-icon {
+                width: 50px;
+                height: 75px;
+                font-size: 1.5rem;
             }
             
             .rule-popup {
-                width: 90vw;
-                max-width: 320px;
-            }
-            
-            .card-stack {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .reset-button {
-                margin-left: 0;
-                margin-top: 20px;
-            }
-            
-            .game-title {
-                font-size: 24px;
-            }
-        }
-
-        @media (max-height: 600px) and (orientation: landscape) {
-            .header {
-                padding: 10px 0;
-            }
-            
-            .logo-cards {
-                margin-bottom: 10px;
-                gap: 10px;
-            }
-            
-            .logo-card {
-                width: 80px;
-                height: 80px;
-                font-size: 32px;
-            }
-            
-            .game-title {
-                font-size: 20px;
-                margin-bottom: 5px;
-            }
-            
-            .card {
-                width: 140px;
-                height: 200px;
-            }
-            
-            .card-stack {
-                flex-direction: row;
-                gap: 20px;
-            }
-            
-            .rule-popup {
-                width: 220px;
-            }
-            
-            .current-card-display {
-                font-size: 32px;
+                max-width: 280px;
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo-cards">
-            <div class="logo-card">♠</div>
-            <div class="logo-card">♥</div>
-            <div class="logo-card">♦</div>
-            <div class="logo-card">♣</div>
-        </div>
-        <h1 class="game-title">ເກມໄພ່ລາວ</h1>
-    </div>
-
-    <div class="game-container">
-        <div class="card-counter">ເຫຼືອໄພ່: <span id="cardCount">52</span> ໃບ</div>
-        
-        <div class="main-content">
-            <div class="rule-popup" id="rulePopup">
-                <div class="current-card-display" id="currentCard">ກົດໄພ່ເພື່ອເລີ່ມເກມ</div>
-                <div class="rule-text" id="ruleText">ເລືອກໄພ່ເພື່ອເບິ່ງກົດ</div>
+    <div class="container">
+        <!-- Main Screen -->
+        <div class="main-screen" id="mainScreen">
+            <h1 class="title">ເກມໄພ່ລາວ</h1>
+            <div class="card-icons">
+                <div class="card-icon suit-heart">♥</div>
+                <div class="card-icon suit-diamond">♦</div>
+                <div class="card-icon suit-club">♣</div>
+                <div class="card-icon suit-spade">♠</div>
             </div>
+            <button class="start-btn" onclick="startGame()">ເລີ່ມເກມ</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div class="game-screen" id="gameScreen">
+            <button class="reset-btn" onclick="resetGame()">🔄</button>
             
-            <div class="card-stack">
-                <div id="cardStackContainer" onclick="drawCard()">
+            <div class="game-area">
+                <div class="card-stack" onclick="drawCard()">
                     <div class="card">
-                        <div class="card-back">
-                            <div class="card-symbol">?</div>
-                        </div>
+                        <div class="card-number">?</div>
+                        <div class="card-count" id="cardCount">52</div>
                     </div>
-                    <div class="card">
-                        <div class="card-back">
-                            <div class="card-symbol">?</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-back">
-                            <div class="card-symbol">?</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-back">
-                            <div class="card-symbol">?</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-back">
-                            <div class="card-symbol">?</div>
-                        </div>
-                    </div>
+                    <div class="card"></div>
+                    <div class="card"></div>
                 </div>
-                
-                <button class="reset-button" onclick="resetGame()" title="ເລີ່ມເກມໃໝ່">↻</button>
+            </div>
+
+            <div class="game-complete" id="gameComplete">
+                <h2>ເກມຈົບແລ້ວ!</h2>
+                <button class="start-btn" onclick="resetGame()">ເລີ່ມໃໝ່</button>
             </div>
         </div>
-    </div>
 
-    <button class="reset-button" onclick="resetGame()" title="ເລີ່ມເກມໃໝ່">↻</button>
+        <!-- Rule Popup -->
+        <div class="rule-popup" id="rulePopup">
+            <h3 id="cardValue"></h3>
+            <p id="cardRule"></p>
+        </div>
+    </div>
 
     <script>
-        // กำหนดกฎของไพ่
-        const cardRules = {
-            'A': 'A - ກິນຄົນດຽວ',
-            '2': '2 - ຊວນໝູ່ກິນນຳຄົນນຶ່ງ',
-            '3': '3 - ຊວນຫມູ່ອີກສອງຄົນກິນນຳ',
-            '4': '4 - ຄົນຊ້າຍກິນ',
-            '5': '5 - ກິນທຸກຄົນ',
-            '6': '6 - ຄົນຂວາກິນ',
-            '7': '7 - ເອີ້ນຫມູ່ທາງຊ້າຍວ່າ "ທ່ານ..ຕາມດ້ວຍຊື່" ແລະ ຫຍິ້ນເບຍໃຫ້ຄົນຊ້າຍກິນ1ຈອກ',
-            '8': '8 - ລອດຕາຍ',
-            '9': '9 - ເອີ້ນຫມູ່ທາງຂວາວ່າ "ທ່ານ..ຕາມດ້ວຍຊື່" ແລະ ຫຍິ້ນເບຍໃຫ້ຄົນຂວາກິນ1ຈອກ',
-            '10': '10 - ເປັນເບ້ຫຍິ່ນເບຍໃຫ້ຫມູ່ ຈົນກວ່າເລກ10ຈະອອກ',
-            'J': 'J - ສັ່ງໃຜກໍໄດ້ກິນ 1ຄົນ',
-            'Q': 'Q - ສັ່ງໃຜກໍໄດ້ກິນ 2ຄົນ',
-            'K': 'K - ສັ່ງໃຜກໍໄດ້ກິນ ຫຼື ຈະສັ່ງທັງຫມົດກິນຍົກເວັ້ນໂຕເອງກໍໄດ້'
+        let cards = [];
+        let currentCardIndex = 0;
+        let isCardFlipping = false;
+
+        const rules = {
+            'A': 'ກິນຄົນດຽວ',
+            '2': 'ຊວນໝູ່ກິນນຳຄົນນຶ່ງ',
+            '3': 'ຊວນຫມູ່ອີກສອງຄົນກິນນຳ',
+            '4': 'ຄົນຊ້າຍກິນ',
+            '5': 'ກິນທຸກຄົນ',
+            '6': 'ຄົນຂວາກິນ',
+            '7': 'ເອີ້ນຫມູ່ທາງຊ້າຍວ່າ "ທ່ານ..ຕາມດ້ວຍຊື່" ແລະ ຫຍິ້ນເບຍໃຫ້ຄົນຊ້າຍກິນ1ຈອກ',
+            '8': 'ລອດຕາຍ',
+            '9': 'ເອີ້ນຫມູ່ທາງຂວາວ່າ "ທ່ານ..ຕາມດ້ວຍຊື່" ແລະ ຫຍິ້ນເບຍໃຫ້ຄົນຂວາກິນ1ຈອກ',
+            '10': 'ເປັນເບ້ຫຍິ່ນເບຍໃຫ້ຫມູ່ ຈົນກວ່າເລກ10ຈະອອກ',
+            'J': 'ສັ່ງໃຜກໍໄດ້ກິນ 1ຄົນ',
+            'Q': 'ສັ່ງໃຜກໍໄດ້ກິນ 2ຄົນ',
+            'K': 'ສັ່ງໃຜກໍໄດ້ກິນ ຫຼື ຈະສັ່ງທັງຫມົດກິນຍົກເວັ້ນໂຕເອງກໍໄດ້'
         };
 
-        // สร้างสำรับไพ่
-        let deck = [];
-        let currentCardCount = 52;
-
-        function createDeck() {
-            deck = [];
-            const suits = ['♠', '♥', '♦', '♣'];
+        function initializeCards() {
+            cards = [];
             const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+            const suits = ['♥', '♦', '♣', '♠'];
             
             for (let suit of suits) {
                 for (let value of values) {
-                    deck.push({ value: value, suit: suit });
+                    cards.push({ value, suit });
                 }
             }
             
-            // สับไพ่
-            for (let i = deck.length - 1; i > 0; i--) {
+            // Shuffle cards
+            for (let i = cards.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [deck[i], deck[j]] = [deck[j], deck[i]];
+                [cards[i], cards[j]] = [cards[j], cards[i]];
             }
             
-            currentCardCount = 52;
+            currentCardIndex = 0;
             updateCardCount();
         }
 
-        function updateCardCount() {
-            document.getElementById('cardCount').textContent = currentCardCount;
+        function startGame() {
+            document.getElementById('mainScreen').style.display = 'none';
+            document.getElementById('gameScreen').style.display = 'block';
+            initializeCards();
         }
 
-        function showRule(card) {
-            const rulePopup = document.getElementById('rulePopup');
-            const currentCardElement = document.getElementById('currentCard');
-            const ruleTextElement = document.getElementById('ruleText');
-            
-            currentCardElement.textContent = `${card.value}${card.suit}`;
-            ruleTextElement.textContent = cardRules[card.value];
-            
-            rulePopup.classList.add('show');
+        function resetGame() {
+            document.getElementById('mainScreen').style.display = 'flex';
+            document.getElementById('gameScreen').style.display = 'none';
+            document.getElementById('gameComplete').style.display = 'none';
+            document.getElementById('rulePopup').style.display = 'none';
+            initializeCards();
+        }
+
+        function updateCardCount() {
+            const remaining = cards.length - currentCardIndex;
+            document.getElementById('cardCount').textContent = remaining;
         }
 
         function drawCard() {
-            if (deck.length === 0) {
-                alert('ໄພ່ໝົດແລ້ວ! ກົດປຸ່ມເລີ່ມໃໝ່');
+            if (isCardFlipping || currentCardIndex >= cards.length) {
                 return;
             }
 
-            const cardStack = document.getElementById('cardStackContainer');
-            const topCard = cardStack.querySelector('.card:first-child');
-            
-            // เพิ่ม effect การพลิกไพ่
-            topCard.classList.add('card-flip-effect');
+            isCardFlipping = true;
+            const cardStack = document.querySelector('.card-stack');
+            cardStack.classList.add('card-flip');
             
             setTimeout(() => {
-                // ดึงไพ่ใบบนสุด
-                const drawnCard = deck.pop();
-                currentCardCount--;
+                const currentCard = cards[currentCardIndex];
+                showRule(currentCard.value);
+                currentCardIndex++;
                 updateCardCount();
                 
-                // แสดงกฎของไพ่
-                showRule(drawnCard);
+                cardStack.classList.remove('card-flip');
+                isCardFlipping = false;
                 
-                // ลบไพ่ใบบนสุดออกจากสแต็ก
-                topCard.remove();
-                
-                // หากมีไพ่เหลืออยู่ ให้เพิ่มไพ่ใหม่ที่ด้านล่าง
-                if (deck.length > 0) {
-                    const newCard = document.createElement('div');
-                    newCard.className = 'card';
-                    newCard.innerHTML = `
-                        <div class="card-back">
-                            <div class="card-symbol">?</div>
-                        </div>
-                    `;
-                    newCard.style.transform = 'translate(-15px, -15px) rotate(-2.5deg)';
-                    newCard.style.zIndex = '5';
-                    cardStack.appendChild(newCard);
-                    
-                    // อัพเดตตำแหน่งไพ่ทั้งหมด
+                if (currentCardIndex >= cards.length) {
                     setTimeout(() => {
-                        const cards = cardStack.querySelectorAll('.card');
-                        cards.forEach((card, index) => {
-                            const rotation = index * -1 + (Math.random() - 0.5) * 2;
-                            const offsetX = index * -3;
-                            const offsetY = index * -3;
-                            card.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotation}deg)`;
-                            card.style.zIndex = 10 - index;
-                        });
-                    }, 100);
-                }
-                
-                if (deck.length === 0) {
-                    setTimeout(() => {
-                        alert('ເກມຈົບແລ້ວ! ຂອບໃຈທີ່ຫຼິ້ນ');
-                    }, 1000);
+                        document.getElementById('gameComplete').style.display = 'block';
+                    }, 2000);
                 }
             }, 400);
         }
 
-        function resetGame() {
-            // ซ่อนกฎ
-            const rulePopup = document.getElementById('rulePopup');
-            rulePopup.classList.remove('show');
+        function showRule(cardValue) {
+            const popup = document.getElementById('rulePopup');
+            const cardValueElement = document.getElementById('cardValue');
+            const cardRuleElement = document.getElementById('cardRule');
             
-            // รีเซ็ตข้อความ
-            document.getElementById('currentCard').textContent = 'ກົດໄພ່ເພື່ອເລີ່ມເກມ';
-            document.getElementById('ruleText').textContent = 'ເລືອກໄພ່ເພື່ອເບິ່ງກົດ';
+            cardValueElement.textContent = `ໄດ້ເລກ ${cardValue}`;
+            cardRuleElement.textContent = rules[cardValue];
             
-            // สร้างสำรับไพ่ใหม่
-            createDeck();
+            popup.style.display = 'block';
             
-            // รีเซ็ตสแต็กไพ่
-            const cardStack = document.getElementById('cardStack');
-            cardStack.innerHTML = `
-                <div class="card">
-                    <div class="card-back">
-                        <div class="card-symbol">?</div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-back">
-                        <div class="card-symbol">?</div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-back">
-                        <div class="card-symbol">?</div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-back">
-                        <div class="card-symbol">?</div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-back">
-                        <div class="card-symbol">?</div>
-                    </div>
-                </div>
-            `;
+            // Auto hide after 5 seconds or when clicked
+            setTimeout(() => {
+                hideRule();
+            }, 5000);
         }
 
-        // เริ่มต้นเกม
-        createDeck();
+        function hideRule() {
+            document.getElementById('rulePopup').style.display = 'none';
+        }
+
+        // Hide rule popup when clicked
+        document.getElementById('rulePopup').addEventListener('click', hideRule);
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            initializeCards();
+        });
+
+        // Prevent zoom on double tap
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     </script>
 </body>
 </html>
